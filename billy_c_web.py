@@ -6,6 +6,7 @@ import re
 import wolframalpha
 from bs4 import BeautifulSoup
 from cleverwrap import CleverWrap
+import ftfy
 
 import time
 
@@ -471,7 +472,7 @@ c_cytat.desc = "życiowe maksymy"
 
 @asyncio.coroutine
 def c_cleverbot(client, message):
-	yield from client.send_message(message.channel, sh.mention(message) + cw.say(sh.get_args(message, True)))
+	yield from ftfy.ftfy(client.send_message(message.channel, sh.mention(message) + cw.say(sh.get_args(message, True))))
 
 c_cleverbot.command = r"(cb|cleverbot|(od)?powiedz|why|(dla)?czego|(dla)?czemu)"
 c_cleverbot.params = ["zapytanie"]
